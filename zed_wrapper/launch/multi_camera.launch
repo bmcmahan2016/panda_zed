@@ -1,0 +1,34 @@
+<launch>
+
+    <arg name="path" default="/home/necl/Pictures/panda/"/>
+    <!-- Launch the zedm.launch with custom arguments -->
+
+
+    <!-- Launch the zed2.launch for the first camera with custom arguments -->
+    <include file="$(find zed_wrapper)/launch/zedm.launch">
+        <arg name="camera_name" value="zed2_mini"/>
+        <arg name="node_name" value="stereo_cam"/>
+        <arg name="camera_id" value="2"/>
+    </include>
+
+
+    <!-- Launch the zed2.launch for the first camera with custom arguments -->
+    <include file="$(find zed_wrapper)/launch/zed2.launch">
+        <arg name="camera_name" value="zed2_0"/>
+        <arg name="node_name" value="stereo_cam"/>
+        <arg name="camera_id" value="0"/>
+    </include>
+
+    <!-- Launch the zed2.launch for the second camera with custom arguments -->
+    <include file="$(find zed_wrapper)/launch/zed2.launch">
+        <arg name="camera_name" value="zed2_1"/>
+        <arg name="node_name" value="stereo_cam"/>
+        <arg name="camera_id" value="1"/>
+    </include>
+
+    <!-- Run the Python script -->
+    <node pkg="zed_wrapper" type="collect_demonstration.py" name="trajectory_collection" output="screen">
+        <!-- Add any necessary parameters or arguments here -->
+        <param name="file_path" value="$(arg path)"/>
+    </node>
+</launch>

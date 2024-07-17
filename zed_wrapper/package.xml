@@ -19,6 +19,7 @@
   <depend>roscpp</depend>
   <depend>rosconsole</depend>
   <depend>zed_nodelets</depend>  
+  
 
   <exec_depend>robot_state_publisher</exec_depend>
 
